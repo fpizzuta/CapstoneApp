@@ -11,7 +11,6 @@ var World = {
             can be found in the documentation in the TargetManagement section.
             Each target in the target collection is identified by its target name. By using this
             target name, it is possible to create an AR.ImageTrackable for every target in the target collection.
-         AR.TargetCollectionResource("assets/magazine.wtc", {
          */
         this.targetCollectionResource = new AR.TargetCollectionResource("assets/drwho.wtc", {
             onError: World.onError
@@ -37,13 +36,13 @@ var World = {
         */
 
         /* Create overlay for page one of the magazine. */
-        var imgOne = new AR.ImageResource("assets/master.jpg", {
+        var imgOne = new AR.ImageResource("assets/master.png", {
             onError: World.onError
         });
         var overlayOne = new AR.ImageDrawable(imgOne, 1, {
-            translate: {
-                x: -0.15
-            }
+            x: 1,
+            rotation: -90,
+            scale: 0.5
         });
 
         /*
@@ -53,12 +52,14 @@ var World = {
             Important: If you replace the tracker file with your own, make sure to change the target name accordingly.
             Use a specific target name to respond only to a certain target or use a wildcard to respond to any or a
             certain group of targets.
-          this.pageOne = new AR.ImageTrackable(this.tracker, "pageOne", {
+         
+         this.pageOne = new AR.ImageTrackable(this.tracker, "pageOne", {
         */
         this.pageOne = new AR.ImageTrackable(this.tracker, "*", {
             drawables: {
                 cam: overlayOne
             },
+            enabled: false,
             onImageRecognized: World.hideInfoBar,
             onError: World.onError
         });

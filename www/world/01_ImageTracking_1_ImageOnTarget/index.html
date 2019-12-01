@@ -17,10 +17,10 @@
 
 <body>
 <div id="infoBox" class="info">
-    <div class="text">Scan Target &#35;1 (surfer):</div>
-    <div class="icons">
-        <img src='assets/surfer.png'/>
-    </div>
+    <div class="text">Scan Target &#35;Dr Who Pinball</div>
+<!--    <div class="icons">-->
+<!--        <img src='assets/surfer.png'/>-->
+<!--    </div>-->
 </div>
 <div id="loadingMessage" class="info">Loading ...</div>
 
@@ -28,7 +28,11 @@
 <script>
     var socket = io.connect('http://192.168.1.48:8080');
     socket.on('master', function (data) {
-              alert('Master emit recieved');
+              if ( World.pageOne.enabled == true) {
+                World.pageOne.enabled = false;
+              } else {
+                World.pageOne.enabled = true;
+              }
     });
 </script>
 </body>
